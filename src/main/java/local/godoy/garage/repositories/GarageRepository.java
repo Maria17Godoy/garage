@@ -4,6 +4,7 @@
  */
 package local.godoy.garage.repositories;
 
+import java.util.List;
 import local.godoy.garage.entities.Veículo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,5 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author ppjatb
  */
 public interface GarageRepository extends JpaRepository<Veículo, Long> {
+    
+    List<Veículo> findById(long id);
     
 }

@@ -21,8 +21,16 @@ public class GarageService {
     private GarageRepository garageRepository;
     
     public List<Veículo> findAll() {
-        
         List<Veículo> result = garageRepository.findAll();
         return result;
     }
+    
+    public List<Veículo> findById(long id) {
+        List<Veículo> result = garageRepository.findById(id);   
+        return result;
+    }   
 }
+    
+    
+    
+
