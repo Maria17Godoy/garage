@@ -25,11 +25,28 @@ public class GarageController {
     private GarageService garageService;
     
     @GetMapping("/forsale")
-    public List<Veículo> findAll() {
-        List<Veículo> result = garageService.findAll();
-        return result;
+     public ResponseEntity<List<GarageMinDTO>> findAll() {
+        List<GarageMinDTO> result = garageService.findAll();
+        
+        if (result == null) {
+            return ResponseEntity.notFound().build();
+            
+        } else {
+            return ResponseEntity.ok(result);
+        }    }
+    
+    @GetMapping("/id/{id}")
+    public ResponseEntity<List<Veículo>> findById(@PathVariable long id){
+        List<Veículo> result = garageService.findById(id);
+        
+        if (result == null) {
+            return ResponseEntity.notFound().build();
+            
+        } else {
+            return ResponseEntity.ok(result);
+        }
     }
-   
+    
     @GetMapping("/cor/{cor}")
     public ResponseEntity<List<GarageMinDTO>> findByCorIgnoreCase(@PathVariable String cor){
         List<GarageMinDTO> result = garageService.findByCorIgnoreCase(cor);
@@ -40,5 +57,21 @@ public class GarageController {
         } else {
             return ResponseEntity.ok(result);
         }
+    
+    }
+    
+    @GetMapping("/ano/{ano}")
+    public ResponseEntity<List<GarageMinDTO>> findByAno(@PathVariable int ano){
+        List<GarageMinDTO> result = garageService.findByAno(ano);
+        
+        if (result == null) {
+            return ResponseEntity.notFound().build();
+            
+        } else {
+            return ResponseEntity.ok(result);
+        }
+    
     }
 }
+ 
+
