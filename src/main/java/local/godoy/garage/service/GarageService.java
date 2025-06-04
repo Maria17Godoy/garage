@@ -5,6 +5,7 @@
 package local.godoy.garage.service;
 
 import java.util.List;
+import local.godoy.garage.DTO.GarageMinDTO;
 import local.godoy.garage.entities.Veículo;
 import local.godoy.garage.repositories.GarageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,13 @@ public class GarageService {
         List<Veículo> result = garageRepository.findById(id);   
         return result;
     }   
+    
+    public List<GarageMinDTO> findByCorIgnoreCase(String cor) {
+        List<Veículo> resultGarage = garageRepository.findByCorIgnoreCase(cor);
+        
+        List<GarageMinDTO> resultDTO = resultGarage.stream().map(x -> new GarageMinDTO(x)).toList();
+        return resultDTO;
+    }
 }
     
     

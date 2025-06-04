@@ -5,6 +5,7 @@
 package local.godoy.garage.controller;
 
 import java.util.List;
+import local.godoy.garage.DTO.GarageMinDTO;
 import local.godoy.garage.entities.Veículo;
 import local.godoy.garage.service.GarageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,9 @@ public class GarageController {
         return result;
     }
    
-    @GetMapping("/id/{id}")
-    public ResponseEntity<List<Veículo>> findById(@PathVariable long id){
-        List<Veículo> result = garageService.findById(id);
+    @GetMapping("/cor/{cor}")
+    public ResponseEntity<List<GarageMinDTO>> findByCorIgnoreCase(@PathVariable String cor){
+        List<GarageMinDTO> result = garageService.findByCorIgnoreCase(cor);
         
         if (result == null) {
             return ResponseEntity.notFound().build();
